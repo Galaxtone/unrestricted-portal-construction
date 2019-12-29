@@ -8,9 +8,9 @@ public interface IAreaHelper {
 
 	public boolean isValid();
 
-	public boolean hasPortalBlocks();
+	public boolean isValidNormally();
 
-	public boolean hasNonObsidianBlocks();
+	public boolean hasPortalBlocks();
 
 	public void createPortal();
 }

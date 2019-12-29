@@ -15,12 +15,12 @@ import com.galaxtone.upc.util.WorldDelegate;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.PortalBlock;
+import net.minecraft.block.PortalBlock.AreaHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 
-@Mixin(PortalBlock.AreaHelper.class)
-public class AreaHelperMixin implements IAreaHelper {
+@Mixin(AreaHelper.class)
+public class MixinAreaHelper implements IAreaHelper {
 
 	@Shadow
 	private IWorld world;
@@ -29,18 +29,20 @@ public class AreaHelperMixin implements IAreaHelper {
 	private int foundPortalBlocks;
 
 	@Shadow
+	@Override
 	public boolean isValid() {
 		return false;
 	}
 
 	@Shadow
+	@Override
 	public void createPortal() {
 	}
 
 	private boolean hasNonObsidianBlocks = false;
 
-	@Redirect(at = @At(value = "FIELD", target = "world", opcode = Opcodes.PUTFIELD, ordinal = 0), method = "<init>")
-	public void modifyWorld(PortalBlock.AreaHelper areaHelper, IWorld world) {
+	@Redirect(at = @At(value = "FIELD", target = "Lnet/minecraft/block/PortalBlock$AreaHelper;world:Lnet/minecraft/world/IWorld;", opcode = Opcodes.PUTFIELD, ordinal = 0), method = "<init>")
+	public void modifyWorld(AreaHelper areaHelper, IWorld world) {
 		this.world = new WorldDelegate(world) {
 
 			@Override
@@ -56,12 +58,12 @@ public class AreaHelperMixin implements IAreaHelper {
 	}
 
 	@Override
-	public boolean hasPortalBlocks() {
-		return this.foundPortalBlocks != 0;
+	public boolean isValidNormally() {
+		return this.isValid() && !this.hasNonObsidianBlocks;
 	}
 
 	@Override
-	public boolean hasNonObsidianBlocks() {
-		return this.hasNonObsidianBlocks;
+	public boolean hasPortalBlocks() {
+		return this.foundPortalBlocks != 0;
 	}
 }

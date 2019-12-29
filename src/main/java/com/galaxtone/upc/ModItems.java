@@ -4,15 +4,16 @@
 
 package com.galaxtone.upc;
 
-import com.galaxtone.upc.item.ReinforcedIgniterItem;
+import com.galaxtone.upc.item.ItemReinforcedIgniter;
 
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public final class ModItems {
 
-	public static final Item REINFORCED_IGNITER = new ReinforcedIgniterItem();
+	public static final Item REINFORCED_IGNITER = new ItemReinforcedIgniter();
 
 	private ModItems() {
 	}
@@ -23,5 +24,6 @@ public final class ModItems {
 
 	static void registerItems() {
 		registerItem("reinforced_igniter", REINFORCED_IGNITER);
+		DispenserBlock.registerBehavior(REINFORCED_IGNITER, ItemReinforcedIgniter.DISPENSER_BEHAVIOR);
 	}
 }

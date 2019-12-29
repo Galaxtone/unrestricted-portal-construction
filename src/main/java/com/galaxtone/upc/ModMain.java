@@ -10,8 +10,14 @@ public final class ModMain implements ModInitializer {
 
 	public static final String MOD_ID = "upc";
 
+	private static boolean isImmersivePresent = false;
+
+	private ModMain() {
+	}
+
 	@Override
 	public void onInitialize() {
 		ModItems.registerItems();
+		ModCompatibility.initialize();
 	}
 }
