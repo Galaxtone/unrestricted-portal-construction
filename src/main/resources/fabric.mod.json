@@ -1,0 +1,26 @@
+{
+	"schemaVersion": 1,
+	"id": "upc",
+	"version": "${version}",
+	"name": "Unrestrained Portal Construction",
+	"description": "This mod adds a reinforced igniter that allows nether portals to be created with a combination of solid blocks rather than simply using obsidian.",
+	"authors": [
+		"Galaxtone"
+	],
+	"license": "MIT",
+	"icon": "assets/upc/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.galaxtone.upc.ModMain"
+		]
+	},
+	"mixins": [
+		"upc.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.7.2",
+		"fabric": ">=0.4.25",
+		"minecraft": "1.15.1"
+	}
+}

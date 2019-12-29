@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.galaxtone.upc.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "AreaHelperMixin",
+	"FireBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
