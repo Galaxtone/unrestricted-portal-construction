@@ -1,3 +1,7 @@
+/* Copyright (c) 2019 Galaxtone
+ * MIT License.
+*/
+
 package com.galaxtone.upc.util;
 
 import net.minecraft.block.PortalBlock;
