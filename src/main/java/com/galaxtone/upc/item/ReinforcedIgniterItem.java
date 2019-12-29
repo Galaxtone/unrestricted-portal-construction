@@ -24,34 +24,30 @@ import net.minecraft.world.dimension.DimensionType;
 public class ReinforcedIgniterItem extends FlintAndSteelItem {
 
 	public ReinforcedIgniterItem() {
-		super(new Item.Settings()
-				.group(ItemGroup.TOOLS)
-				.maxDamage(24));
+		super(new Item.Settings().group(ItemGroup.TOOLS).maxDamage(24));
 	}
 
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos().offset(context.getSide());
-		
+
 		BlockState blockState = world.getBlockState(pos);
 		if (!blockState.isAir())
 			return ActionResult.FAIL;
-		
-		PortalBlock.AreaHelper areaHelper = ((PortalBlock)
-				Blocks.NETHER_PORTAL).createAreaHelper(world, pos);
+
+		PortalBlock.AreaHelper areaHelper = ((PortalBlock) Blocks.NETHER_PORTAL).createAreaHelper(world, pos);
 		if (areaHelper == null)
 			return ActionResult.FAIL;
 
 		PlayerEntity player = context.getPlayer();
-		world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE,
-				SoundCategory.BLOCKS, 1.0F, RANDOM.nextFloat() * 0.4F + 0.8F);
-		
+		world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F,
+				RANDOM.nextFloat() * 0.4F + 0.8F);
+
 		if (world.dimension.getType() == DimensionType.OVERWORLD
-				|| world.dimension.getType() == DimensionType.THE_NETHER) {
+				|| world.dimension.getType() == DimensionType.THE_NETHER)
 			areaHelper.createPortal();
-		}
-		
+
 		ItemStack itemStack = context.getStack();
 		if (player instanceof ServerPlayerEntity) {
 			itemStack.damage(1, player, ((playerEntity) -> {

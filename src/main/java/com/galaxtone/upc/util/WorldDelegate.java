@@ -44,14 +44,12 @@ public class WorldDelegate implements IWorld {
 	}
 
 	@Override
-	public List<Entity> getEntities(Entity except, Box box,
-			Predicate<? super Entity> predicate) {
+	public List<Entity> getEntities(Entity except, Box box, Predicate<? super Entity> predicate) {
 		return this.world.getEntities(except, box, predicate);
 	}
 
 	@Override
-	public <T extends Entity> List<T> getEntities(
-			Class<? extends T> entityClass, Box box,
+	public <T extends Entity> List<T> getEntities(Class<? extends T> entityClass, Box box,
 			Predicate<? super T> predicate) {
 		return this.world.getEntities(entityClass, box, predicate);
 	}
@@ -62,8 +60,7 @@ public class WorldDelegate implements IWorld {
 	}
 
 	@Override
-	public Chunk getChunk(int chunkX, int chunkZ, ChunkStatus leastStatus,
-			boolean create) {
+	public Chunk getChunk(int chunkX, int chunkZ, ChunkStatus leastStatus, boolean create) {
 		return this.world.getChunk(chunkX, chunkZ, leastStatus, create);
 	}
 
@@ -128,8 +125,7 @@ public class WorldDelegate implements IWorld {
 	}
 
 	@Override
-	public boolean testBlockState(BlockPos blockPos,
-			Predicate<BlockState> state) {
+	public boolean testBlockState(BlockPos blockPos, Predicate<BlockState> state) {
 		return this.world.testBlockState(blockPos, state);
 	}
 
@@ -144,8 +140,7 @@ public class WorldDelegate implements IWorld {
 	}
 
 	@Override
-	public boolean breakBlock(BlockPos pos, boolean drop,
-			Entity breakingEntity) {
+	public boolean breakBlock(BlockPos pos, boolean drop, Entity breakingEntity) {
 		return this.world.breakBlock(pos, drop, breakingEntity);
 	}
 
@@ -200,23 +195,19 @@ public class WorldDelegate implements IWorld {
 	}
 
 	@Override
-	public void playSound(PlayerEntity player, BlockPos blockPos,
-			SoundEvent soundEvent, SoundCategory soundCategory, float volume,
-			float pitch) {
-		this.world.playSound(player, blockPos, soundEvent, soundCategory,
-				volume, pitch);
+	public void playSound(PlayerEntity player, BlockPos blockPos, SoundEvent soundEvent, SoundCategory soundCategory,
+			float volume, float pitch) {
+		this.world.playSound(player, blockPos, soundEvent, soundCategory, volume, pitch);
 	}
 
 	@Override
-	public void addParticle(ParticleEffect parameters, double x, double y,
-			double z, double velocityX, double velocityY, double velocityZ) {
-		this.world.addParticle(parameters, x, y, z, velocityX, velocityY,
-				velocityZ);
+	public void addParticle(ParticleEffect parameters, double x, double y, double z, double velocityX, double velocityY,
+			double velocityZ) {
+		this.world.addParticle(parameters, x, y, z, velocityX, velocityY, velocityZ);
 	}
 
 	@Override
-	public void playLevelEvent(PlayerEntity player, int eventId,
-			BlockPos blockPos, int data) {
+	public void playLevelEvent(PlayerEntity player, int eventId, BlockPos blockPos, int data) {
 		this.world.playLevelEvent(player, eventId, blockPos, data);
 	}
 }

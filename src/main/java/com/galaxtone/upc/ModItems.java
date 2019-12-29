@@ -14,11 +14,11 @@ public final class ModItems {
 
 	public static final Item REINFORCED_IGNITER = new ReinforcedIgniterItem();
 
-	private ModItems() {}
+	private ModItems() {
+	}
 
 	private static void registerItem(String name, Item item) {
-		Registry.register(Registry.ITEM,
-				new Identifier(ModMain.MOD_ID, name), item);
+		Registry.register(Registry.ITEM, new Identifier(ModMain.MOD_ID, name), item);
 	}
 
 	static void registerItems() {

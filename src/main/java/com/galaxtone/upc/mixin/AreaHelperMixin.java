@@ -39,22 +39,16 @@ public class AreaHelperMixin implements IAreaHelper {
 
 	private boolean hasNonObsidianBlocks = false;
 
-	@Redirect(at = @At(value = "FIELD",
-				target = "world",
-				opcode = Opcodes.PUTFIELD,
-				ordinal = 0),
-			method = "<init>")
-	public void modifyWorld(PortalBlock.AreaHelper areaHelper,
-			IWorld world) {
+	@Redirect(at = @At(value = "FIELD", target = "world", opcode = Opcodes.PUTFIELD, ordinal = 0), method = "<init>")
+	public void modifyWorld(PortalBlock.AreaHelper areaHelper, IWorld world) {
 		this.world = new WorldDelegate(world) {
 
 			@Override
 			public BlockState getBlockState(BlockPos pos) {
 				BlockState blockState = super.getBlockState(pos);
-				if (!blockState.isFullCube(world, pos)
-						|| blockState.getBlock() == Blocks.OBSIDIAN)
+				if (!blockState.isFullCube(world, pos) || blockState.getBlock() == Blocks.OBSIDIAN)
 					return blockState;
-				
+
 				hasNonObsidianBlocks = true;
 				return new BlockState(Blocks.OBSIDIAN, null);
 			}
